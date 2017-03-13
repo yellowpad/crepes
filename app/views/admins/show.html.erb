@@ -1,0 +1,28 @@
+<% if current_user.id == @user.id %>
+	
+	<div class="col-md-10 col-md-offset-1">
+		<div class="container">
+			<div style="text-align:center;padding-bottom:30px;"><h1>Welcome, <%= @user.email %></h1>
+				<%= link_to "Create New Campaign", new_campaign_path, class: "btn", style: "margin-top:20px;background-color:black;font-weight:900;color:white;" %>
+			</div>
+
+			<% if @user.campaigns %>
+					<div style="margin-top:40px;" class="row">
+						<% @user.campaigns.each do |campaign| %>
+							<div class="col-md-4"><div style="background-color:white; margin:10px;padding:20px;border-color:#E7E7E7;border-width:1px;border-style:solid;">
+								<p style="text-align:center;"><%= link_to campaign.title, campaign_path(campaign) %></p>
+								<p style="text-align:center;"><%= link_to "View Campaign", campaign_path(campaign), class: "btn btn-1" %></p>
+							</div></div>
+						<% end %>
+					</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">	
+			<% #button_to "sign out", destroy_user_session_path, method: :delete %>
+		</div>
+	</div>
+<% else %>
+		<div>Get out of here!</div>
+<% end %>

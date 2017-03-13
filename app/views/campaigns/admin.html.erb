@@ -1,0 +1,111 @@
+<style>
+	td,th,tr,thead,table{
+		padding:20px !important;
+		border-color:black;
+		border-width:1px;
+		border-style:solid;
+	}
+	th{
+		background-color:#25CB68;
+	}
+
+	table,thead{
+		border-radius:3px !important;
+	}
+</style>
+<% if current_user != @campaign.user %>
+	You cannot access this page
+<% else %>
+
+	<div class="col-md-3" style="background-color:#2E3C54;color:white;height:100vw;">
+		Side Bar
+	</div>
+
+	<div class="col-md-9">
+			<% if current_user == @campaign.user %>
+
+		
+
+
+				<div class="row" style="margin:5%;">
+					<div class="col-md-10 col-md-offset-1" style="margin-top:20px;margin-bottom:40px;background-color:white;padding:40px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.3);border-radius:3px;">
+						<div style="text-align:center;">
+							<% if !@campaign.active %>
+								<%= link_to "Activate Campaign", activate_path, class: "btn btn-primary"  %>
+							<% else %>
+								<div class="col-md-offset-3 col-md-6">
+									<div class="row" style="padding:20px;">	
+										<% campaign_end = @campaign.activate_date.to_date + @campaign.duration %>
+										<div style="font-size:36px;line-height:36px;margin-bottom:0;text-align:center;font-weight:900">
+											<span style="margin-top:0;color:black;padding-bottom:0;"><%= count_down = (campaign_end - Date.today).to_i %> Days Left</span><br><span style="color:black;padding-top:0;font-size:18px;">Until Campaign End</span>
+										</div>
+									</div>
+								</div>
+								<%= link_to "Deactivate Campaign", activate_path, class: "btn btn-danger", style: "color:white;" %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+   				
+
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1" style="margin-top:20px;margin-bottom:40px;background-color:white;padding:40px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.3);border-radius:3px;">
+		   				<%= javascript_include_tag  "//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js" %>
+						<div class='wrapper'>
+						  <canvas height='300' id='canvas' width='700'></canvas>
+						</div>
+						
+						<script>
+
+						var ctx = document.getElementById("canvas").getContext("2d");
+						var gradient = ctx.createLinearGradient(0,0,0,400);
+						gradient.addColorStop(0, 'rgba(57,231,178,1)');
+						gradient.addColorStop(1, 'rgba(3,206,252,1)');
+						<%= subscribers_by_day(@campaign) %>
+						var myData = {
+						  labels: label,
+						  datasets: [{
+						    fillColor: gradient,
+						    strokeColor: "rgba(3,206,252,1)",
+						    pointColor: "rgba(220,220,220,1)",
+						    pointStrokeColor: "rgba(3,206,252,1)",
+						    data: data
+						  }]
+						}
+
+						new Chart(document.getElementById("canvas").getContext("2d")).Line(myData)	
+
+						</script>	
+					</div>
+				</div>
+
+				<% if !@campaign.active %>				
+					<div class="row" style="margin:5%;">
+						<%= render partial: 'prizes/form', locals:{prize: @prize, campaign: @campaign} %>
+					</div>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2" style="background-color:white;padding:40px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.3);border-radius:3px;">
+							<h1>Perks</h1>
+							<%= render @prizes %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+
+
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1" style="margin-top:20px;margin-bottom:40px;background-color:white;padding:40px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.3);border-radius:3px;">
+				<h1>Total Subscribers Gained from this Campaign: 
+					<span style="color:#25CB68;"><%= @subscribers.count %></span>
+				</h1>
+				<div style="text-align:center; color:white;padding:10px;">
+					<%= link_to "Download List", stats_path(format: :csv), class: "btn btn-primary", style: "color:white;" %>	
+				</div>
+				<div class="row" style="margin:5%;">				
+					<%= render partial: 'campaigns/stats', locals: {subscribers: @subscribers} %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<% end%>

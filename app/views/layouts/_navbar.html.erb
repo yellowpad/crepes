@@ -1,0 +1,29 @@
+<nav style="margin-bottom:0 !important;" class="navbar navbar-default">
+	<div style="margin-bottom:0 !important;" class="container">
+			<div class="navbar-header">
+			    <%= link_to image_tag("pancakes.png", alt: "Crepes.io"), root_path, id: "logo", class: "navbar-brand" %>
+			</div>
+		<ul style="margin-bottom:0 !important;" class="nav navbar-nav">
+			<% if user_signed_in? %>
+				<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>			
+			<% else %>
+				<li><%= link_to "Sign Up", new_user_registration_path %></li>
+				<li><%= link_to "Login", new_user_session_path %></li>			
+			<% end%>
+		</ul>
+		<ul class="nav navbar-nav pull-right">
+			<li>
+				<a href-"#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Active Campaigns<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+				<% @campaigns = Campaign.all %>
+				<% @campaigns.where(active: true).each do |campaign| %>
+					<li><%= link_to campaign.title, campaign_path(campaign) %></li>
+				<% end %>
+				</ul>
+			</li>
+			<% if user_signed_in? %>
+				<li style="padding-top:8px;"><span><%= link_to "Create Campaign", new_campaign_path, class: "btn btn-1" %></span></li>
+			<% end %>
+		</ul>
+	</div>
+</nav>

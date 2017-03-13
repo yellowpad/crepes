@@ -1,0 +1,27 @@
+<div id="gradient-2" class="row">
+	<div style="padding-top:40px;padding-bottom:40px;" class="container">
+		<div class="col-md-6">
+			<%= link_to image_tag('Viralwaitlist'), "#", class: "section-1-pic" %>
+		</div>
+		<div class="col-md-6">
+			<div>
+				<p style="color:white;font-size:18px;">Build Your Audience with a Viral Waiting List. Offer users perks and incentives for joining and sharing your waitlist.</p>			
+				<div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<h1>crepes.io</h1>
+			<p>Build Your Audience</p>
+			<%= link_to "Sign in", new_user_session_path, class: "btn btn-danger" %>
+			<%= link_to "Sign up", new_user_registration_path, class: "btn btn-danger" %>	
+		</div>
+	</div>
+</div>
+
+<% #render partial: "devise/sessions/new", locals:{resource: @resource} %>

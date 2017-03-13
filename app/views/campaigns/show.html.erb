@@ -1,0 +1,180 @@
+<% if params[:confirmation] %>
+
+	<div>
+	<%=confirmation(params[:subscriber],params[:checkin])%>
+	</div>
+
+<% end %>
+
+
+
+<% if @campaign.active %>
+
+	<!-- Start main campaign section -->
+	<div id="gradient">
+		<div class="container">
+			<div class="col-md-offset-3 col-md-6">
+				<div class="row" style="padding:20px;">	
+					<% campaign_end = @campaign.activate_date.to_date + @campaign.duration %>
+					<div style="font-size:36px;line-height:36px;margin-bottom:0;text-align:center;font-weight:900">
+						<span style="margin-top:0;color:white;padding-bottom:0;"><%= count_down = (campaign_end - Date.today).to_i %> Days Left</span><br><span style="color:white;padding-top:0;font-size:18px;">Until Campaign End</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<!-- Main Box for our Columns-->
+		<div style="padding-bottom:50px !important;">
+			<div>
+			<!-- Column Left -->
+				<div class="col-md-3">
+					<div style="margin-top:100px;padding:10px;border-radius:4px;padding:20px;border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:#FCFCFB;">
+						<h4>Campaign Details</h4>
+						<div>
+							Describe the details of your campaign. Why should users subscribe? 
+						</div>
+					</div>			
+					<div style="margin-top:20px; padding:10px;border-radius:4px;padding:20px;border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:#FCFCFB;">
+						<h4>Company Info</h4>
+						<div>
+							<a href="#">Visit Site</a> 
+						</div>
+					</div>		
+				</div>
+
+
+			<!-- Column Center -->			
+				<div style="margin-bottom:100px;" class="col-md-6">
+					<div class="row " style=" background-color:#ffffff; border-radius:4px; padding-top:0px;padding-bottom:150px !important;border-style:solid;border-width:1px;border-color:#F1EEEA;">
+						
+						<div style="padding:20px;border-bottom-color:#F1EEEA;border-bottom-style:solid;border-bottom-width:1px;background-color:#FCFCFB;">
+							<div style="text-align:center;">
+								<div style="text-align:center; position:relative;">
+									<%= image_tag ('startup.png'), class: "header-img", style: "width:80px" %>
+								</div>
+								<h3><%= @campaign.title %></h3>
+							</div>
+						</div>
+						
+						<div style="margin-top:20px" class="container">
+							<%= form_for([@campaign, @subscriber]) do |f| %>
+								<%= f.label :name, "Name" %>
+								<%= f.text_field :name, class: "form-control" %><br>
+								<%= f.label :email, "Email" %>
+								<%= f.text_field :email, class: "form-control" %><br>
+								<%= f.hidden_field :referred_by, value: @referred_by  %>
+								<div style="text-align:center; width:100%;display:inline-block; position:relative;">
+									<div style="padding:5px; width:49%; text-align:center !important; float:left;display:inline !important;"><%= f.submit "Join Waitlist", class: "btn btn-1" %></div>
+									<div style="width:49%; padding:5px; text-align:center !important; float:right;display:inline !important;"><%= f.submit "Check Your Score", class: "btn btn-1" %></div>
+								</div>
+							<% end %>
+						</div>
+					</div>
+				</div>
+<style>
+.post-container {
+
+}
+.post-thumb {
+    float: left
+}
+.post-thumb img {
+    display: block
+}
+.post-content {
+
+}
+.post-title {
+    font-weight: bold;
+    font-size: 100%
+}
+	
+</style>
+			<!-- Column Right -->
+				<div class="col-md-3">
+					<div style="margin-top:100px;padding:10px;border-radius:4px;padding:20px;border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:#FCFCFB;">
+						<h4>View Perks</h4>
+					</div>							
+					<% if @campaign.prizes %>
+						<div style="padding:10px;border-radius:4px;padding:20px;border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:#FCFCFB;">
+								<% @campaign.prizes.each do |prize| %>
+									<div class="post-container" style="text-decoration:none;list-style-type:none;">
+										<%= link_to image_tag('star.png'), "#", class: "post-thumb" %>
+										<div class="post-content"> 
+											<p class="post-title" style="text-decoration:none;list-style-type:none;">Perk: <strong style="color:#25CB68;"><%= prize.title %></strong></p>
+											<p style="text-decoration:none;list-style-type:none;">Referrals Needed: <strong><%= prize.milestone %></strong></p>
+											<br>
+										</div>
+									</div>
+								<% end %>
+						</div>
+					<% end %>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End main campaign section -->
+	<style>
+	 input{
+	    display: inline-block;
+	    width: 300px;
+	    margin-right: 5px;
+
+	    font-size: 14px;
+	    font-weight: normal;
+	    line-height: 20px;
+	    display: block;
+	    width: 100%;
+	    height: 40px;
+	    padding: 5px 15px;
+	    background-color: #ffffff;
+	    border: 1px solid #dddddd;	
+
+	  -webkit-appearance: none;
+	    border-radius: 2px;   
+	  }
+	</style>
+
+	<div class="container">	
+
+	</div>
+
+	<div style="border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:white;">	
+	<div class="container">	
+		<div class="row" style="padding-top:50px;padding-bottom:50px;">
+				<div class="col-md-6">	
+					<div>
+						<%= form_tag(campaign_path(@campaign), method: :get) do %>
+							<label style="font-size:18px; text-align:center !important;padding-bottom:10px;">Check Your Campaign Score</label><br>
+							<%= text_field_tag :term, "", {placeholder:"Enter your Email"} %><br>
+							<%= submit_tag "Check Score", {class: "btn"} %>
+						<% end %>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="container">
+						<% if !@result.nil? && !@result.empty? %>
+							<ul style="padding-top:20px; text-decoration:none;list-style-type:none;">
+								<li style="text-decoration:none;list-style-type:none; font-size:18px;"><strong>You have earned <span style="color:#25CB68;"><%= @result[0].score %></span> points!</strong></li><br>
+								<li style="display:inline;text-decoration:none;list-style-type:none;font-size:18px;"><strong>Share Your Link: </strong><input style="display:inline;" class="form-control" readonly type="text" value="<%= campaign_url + '?referred_by=' + @result[0].referral_code %>"/></li>
+							</ul>
+						<% end %>
+					</div>
+				</div>
+		</div>
+	</div>
+	</div>
+<% end %>
+
+	<div>
+		<%= render partial: 'progress' %>
+	</div>
+
+	<script type="text/javascript">
+	    $(window).load(function(){
+	        $('#myModal').modal('show');
+	    });
+	</script>
