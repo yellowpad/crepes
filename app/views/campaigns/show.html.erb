@@ -14,7 +14,7 @@
 	<div id="gradient">
 		<div class="container">
 			<div class="col-md-offset-3 col-md-6">
-				<div class="row" style="padding:20px;">	
+				<div class="row" style="padding:20px;">
 					<% campaign_end = @campaign.activate_date.to_date + @campaign.duration %>
 					<div style="font-size:36px;line-height:36px;margin-bottom:0;text-align:center;font-weight:900">
 						<span style="margin-top:0;color:white;padding-bottom:0;"><%= count_down = (campaign_end - Date.today).to_i %> Days Left</span><br><span style="color:white;padding-top:0;font-size:18px;">Until Campaign End</span>
@@ -31,22 +31,22 @@
 					<div style="margin-top:100px;padding:10px;border-radius:4px;padding:20px;border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:#FCFCFB;">
 						<h4>Campaign Details</h4>
 						<div>
-							Describe the details of your campaign. Why should users subscribe? 
+							Describe the details of your campaign. Why should users subscribe?
 						</div>
-					</div>			
+					</div>
 					<div style="margin-top:20px; padding:10px;border-radius:4px;padding:20px;border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:#FCFCFB;">
 						<h4>Company Info</h4>
 						<div>
-							<a href="#">Visit Site</a> 
+							<a href="#">Visit Site</a>
 						</div>
-					</div>		
+					</div>
 				</div>
 
 
-			<!-- Column Center -->			
+			<!-- Column Center -->
 				<div style="margin-bottom:100px;" class="col-md-6">
 					<div class="row " style=" background-color:#ffffff; border-radius:4px; padding-top:0px;padding-bottom:150px !important;border-style:solid;border-width:1px;border-color:#F1EEEA;">
-						
+
 						<div style="padding:20px;border-bottom-color:#F1EEEA;border-bottom-style:solid;border-bottom-width:1px;background-color:#FCFCFB;">
 							<div style="text-align:center;">
 								<div style="text-align:center; position:relative;">
@@ -55,7 +55,7 @@
 								<h3><%= @campaign.title %></h3>
 							</div>
 						</div>
-						
+
 						<div style="margin-top:20px" class="container">
 							<%= form_for([@campaign, @subscriber]) do |f| %>
 								<%= f.label :name, "Name" %>
@@ -88,19 +88,19 @@
     font-weight: bold;
     font-size: 100%
 }
-	
+
 </style>
 			<!-- Column Right -->
 				<div class="col-md-3">
 					<div style="margin-top:100px;padding:10px;border-radius:4px;padding:20px;border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:#FCFCFB;">
 						<h4>View Perks</h4>
-					</div>							
+					</div>
 					<% if @campaign.prizes %>
 						<div style="padding:10px;border-radius:4px;padding:20px;border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:#FCFCFB;">
 								<% @campaign.prizes.each do |prize| %>
 									<div class="post-container" style="text-decoration:none;list-style-type:none;">
 										<%= link_to image_tag('star.png'), "#", class: "post-thumb" %>
-										<div class="post-content"> 
+										<div class="post-content">
 											<p class="post-title" style="text-decoration:none;list-style-type:none;">Perk: <strong style="color:#25CB68;"><%= prize.title %></strong></p>
 											<p style="text-decoration:none;list-style-type:none;">Referrals Needed: <strong><%= prize.milestone %></strong></p>
 											<br>
@@ -130,21 +130,21 @@
 	    height: 40px;
 	    padding: 5px 15px;
 	    background-color: #ffffff;
-	    border: 1px solid #dddddd;	
+	    border: 1px solid #dddddd;
 
 	  -webkit-appearance: none;
-	    border-radius: 2px;   
+	    border-radius: 2px;
 	  }
 	</style>
 
-	<div class="container">	
+	<div class="container">
 
 	</div>
 
-	<div style="border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:white;">	
-	<div class="container">	
+	<div style="border-color:#F1EEEA;border-style:solid;border-width:1px;background-color:white;">
+	<div class="container">
 		<div class="row" style="padding-top:50px;padding-bottom:50px;">
-				<div class="col-md-6">	
+				<div class="col-md-6">
 					<div>
 						<%= form_tag(campaign_path(@campaign), method: :get) do %>
 							<label style="font-size:18px; text-align:center !important;padding-bottom:10px;">Check Your Campaign Score</label><br>
@@ -168,7 +168,6 @@
 	</div>
 	</div>
 <% end %>
-
 
 	<script type="text/javascript">
 	    $(window).load(function(){

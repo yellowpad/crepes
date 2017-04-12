@@ -1,7 +1,7 @@
 <style>
 
 body{
-background:#171A3D !important;	
+background:#171A3D !important;
 }
 
 </style>
@@ -9,19 +9,7 @@ background:#171A3D !important;
 <div class="row">
 <div  class="col-md-12 outer-box"></div>
 	<div class="col-md-6 col-md-offset-3 fancy-box">
-		<div class="container">
-			<%= form_for(@campaign) do |f| %>
-			<%= f.label "Campaign Title" %>
-			<%= f.text_field :title, class: "form-control" %><br>
-    		<div class="form-group">
-				<span style="float:left;">Duration:</span><br>
-				<%= f.text_field :duration, placeholder: "30", class: "day-size form-control col-sm-10"  %>
-				<%= f.label "Days", class: "col-xs-2 control-label days-label" %>
-			</div><br><br><br><br>
-			<%= f.submit "Create Campaign", class: "btn btn-primary" %>
-			<% end %>
-		</div>
+		<%= render partial: 'campaigns/form', locals: {campaign: @campaign, submitbutton: "Create Campaign"}%>
 	</div>
 	<div class="col-md-12"></div>
 </div>
-

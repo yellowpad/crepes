@@ -9,11 +9,13 @@
     <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js" %>
     <style>
       @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800');
+      @import url('https://fonts.googleapis.com/css?family=Pacifico');
     </style>
   </head>
 
   <body>
   <%= render partial: "layouts/navbar" %>
+  <%= flash[:errors] if flash[:errors] %>
     <div style="margin-bottom:0 !important;" class="notice"><%= notice %></div>
     <div style="margin-bottom:0 !important;" class="alert"><%= alert %></div>
     <%= yield %>

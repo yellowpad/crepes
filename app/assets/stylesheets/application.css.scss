@@ -2,7 +2,7 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's 
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
@@ -18,18 +18,9 @@
 
 
 
-@font-face {
-  font-family: Brandon Grotesque;
-  src: url(asset_path('fonts/Brandon_reg.otf') );
-}
-@font-face {
-  font-family: Brandon Grotesque Light;
-  src: url(asset_path('fonts/Brandon_light.otf'));
-}
-
 
 body{
-background-color:#F2F4F5 !important;	
+background-color:#F2F4F5 !important;
 font-family:"Brandon Reg", "Brandon Lite", "Brandon Regular", "Brando Reg", "Brando Lite", "Montserrat" !important;
 }
 
@@ -57,6 +48,27 @@ navbar-brand{
 	background-position: center;
 }
 
+.top-section-1{
+  h1{
+    color:white;
+    text-align:center;
+    font-weight:700;
+    font-size:56px;
+    font-family:'Montserrat'
+  }
+  .top-text-inner{
+    font-size:24px;
+    line-height:15px;
+    font-family:'Montserrat';
+    font-weight:100;
+  }
+  .viral-waitlist{
+    font-size:42px;
+    font-weight:300;
+    font-family:'Montserrat'
+  }
+}
+
 
 #gradient {
   background: red; /* For browsers that do not support gradients */
@@ -66,7 +78,7 @@ navbar-brand{
   background: linear-gradient(to bottom right, #00041F, #2CB8B4); /* Standard syntax */
 }
 #gradient-2 {
-background:#263699;
+background:#0099FF;
  /* background: -webkit-linear-gradient(left top, #00041F, #6F3057);
   background: -o-linear-gradient(bottom right, #00041F, #6F3057);
   background: -moz-linear-gradient(bottom right, #00041F, #6F3057);
@@ -74,7 +86,7 @@ background:#263699;
 }
 
 .alert, .notice, .nav, .navbar, .navbar-default{
-margin-top:0;margin-bottom:0 !important;padding-bottom:0;padding-top:0;	
+margin-top:0;margin-bottom:0 !important;padding-bottom:0;padding-top:0;
 }
 
 
@@ -300,7 +312,7 @@ box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
     margin-left: 0;
     margin-right: 0;
 
-} 
+}
 
 .day-size {
   width:80px !important;
@@ -316,7 +328,7 @@ box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
   background-color:#EEEEEE;
     border-style:solid;
     border-color:#C9D0E0;
-    border-width:0.2em; 
+    border-width:0.2em;
     padding:5%;
     border-radius:4px;
 }
@@ -404,17 +416,17 @@ body {
   opacity: 0;
   transform-origin: center;
   transform: scale(1.2, 1.2);
-  
+
   &:nth-child(1),
   &:nth-child(2) {
     position: absolute;
   }
-  
+
   &:nth-child(1) {
     left: 3%;
     width: 94%;
   }
-  
+
   &:nth-child(2) {
     left: 2%;
     width: 96%;
@@ -439,7 +451,7 @@ body {
   border-radius: 10px;
   transform: translate(-50%, -50%);
   overflow: hidden;
-  
+
   &__fill {
     display: block;
     background: #BD8044;
@@ -451,7 +463,7 @@ body {
   position: relative;
   color: #AC9585;
   cursor: pointer;
-  
+
   &:before {
     content: '';
     position: absolute;
@@ -462,7 +474,7 @@ body {
     border-radius: 100%;
     transform: translate(-50%, -50%);
     transition: 0.3s ease;
-    
+
     .show-radius & {
       background: rgba(#000, 0.1);
     }
@@ -482,14 +494,14 @@ body {
   height: 8px;
   border-radius: 100%;
   transition: 0.3s ease;
-  
+
   .point--complete &,
   .point--active & {
     background: #FFFFFF;
     box-shadow: 0 2px 4px rgba(#000, 0.2),
                 0 0 0 6px #BD8044;
   }
-  
+
   .point--active & {
     box-shadow: 0 2px 4px rgba(#000, 0.2),
                 0 0 0 10px #BD8044;

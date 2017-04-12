@@ -1,0 +1,12 @@
+<div class="container">
+  <%= form_for campaign do |f| %>
+  <%= f.label "Campaign Title" %>
+  <%= f.text_field :title, class: "form-control" %><br>
+    <div class="form-group">
+    <span style="float:left;">Duration:</span><br>
+    <%= f.text_field :duration, placeholder: "30", class: "day-size form-control col-sm-10"  %>
+    <%= f.label "Days", class: "col-xs-2 control-label days-label" %>
+  </div><br><br><br><br>
+  <%= f.submit submitbutton, class: "btn btn-primary" %>
+  <% end %>
+</div>
